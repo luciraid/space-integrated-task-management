@@ -1,0 +1,25 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+export default function WeatherWidget({ city }) {
+  const [forecast, setForecast] = useState(null);
+
+  useEffect(() => {
+    axios.get(`/api/weather?city=${city}`).then(res => setForecast(res.data));
+  }, [city]);
+
+  if (!forecast) return <div>Loading weather...</div>;
+
+  return (
+    <div className="bg-white p-4 rounded shadow">
+      <h2 className="font-semibold mb-2">7-Day Forecast: {city}</h2>
+      <ul>
+        {forecast.list.map(day => (
+          <li key={day.dt}>
+            {new Date(day.dt * 1000).toLocaleDateString()}: {day.weather[0].description}, {day.main.temp}°C
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

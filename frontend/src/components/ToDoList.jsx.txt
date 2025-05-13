@@ -1,0 +1,57 @@
+import React, { useState } from 'react';
+
+export default function ToDoList() {
+  const [tasks, setTasks] = useState([]);
+  const [text, setText] = useState('');
+
+  const add = () => {
+    if (!text.trim()) return;
+    setTasks([...tasks, { text, done: false }]);
+    setText('');
+  };
+
+  return (
+    <div className="bg-white p-4 rounded shadow">
+      <h2 className="font-semibold mb-2">To-Do List</h2>
+      <div className="flex mb-2">
+        <input
+          className="border p-1 flex-grow"
+          value={text}
+          onChange={e => setText(e.target.value)}
+          onKeyDown={e => { if (e.key === 'Enter') add(); }}
+          placeholder="New task"
+        />
+        <button
+          className="ml-2 p-1 bg-blue-500 text-white rounded"
+          onClick={add}
+        >
+          Add
+        </button>
+      </div>
+      <ul>
+        {tasks.map((t, i) => (
+          <li
+            key={i}
+            className={`flex items-center mb-1 ${t.done ? 'line-through text-gray-500' : ''}`}
+          >
+            <input
+              type="checkbox"
+              checked={t.done}
+              onChange={() => {
+                const newTasks = [...tasks];
+                newTasks[i].done = !newTasks[i].done;
+                setTasks(newTasks);
+              }}
+            />
+            <span className="ml-2 flex-grow">{t.text}</span>
+            <button
+              onClick={() => setTasks(tasks.filter((_, j) => j !== i))}
+            >
+              ✕
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
