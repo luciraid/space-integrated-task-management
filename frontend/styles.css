@@ -1,0 +1,58 @@
+/* styles.css */
+
+/* Starfield background */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('https://i.imgur.com/8pPz4rE.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #e0e0e0;
+}
+
+/* Content wrapper */
+#root > div {
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 20, 0.6);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Headings */
+h1, h2 {
+  text-shadow: 0 0 8px cyan;
+}
+
+/* Widget panels */
+.widget {
+  background: rgba(10, 10, 40, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(45deg, #00e5ff, #00b8d4);
+  border: none;
+  color: #001f29;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 0 6px rgba(0, 230, 255, 0.7);
+}
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 230, 255, 1);
+}
+
+/* Inputs */
+input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #00ced1;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
